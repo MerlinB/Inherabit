@@ -1,0 +1,7 @@
+*.pyc
+*.*~
+**/static/
+**/static/**/images/
+**/media/
+**/*.sqlite3
+local_*
