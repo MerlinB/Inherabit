@@ -3,5 +3,7 @@
 **/static/
 **/static/**/images/
 **/media/
-**/*.sqlite3
+*.sqlite3
 local_*
+local.py
+venv
