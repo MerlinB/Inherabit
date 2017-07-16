@@ -25,7 +25,7 @@ SECRET_KEY = 'atye7q@0#6u^-ucq_tz_rlwjs&+*51)@#11lhn7kk2y1p_5((f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['inherabit.com']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
 
     'framework',
     'landingpage',
+    'dms',
 ]
 
 MIDDLEWARE = [
