@@ -1,0 +1,22 @@
+{% extends "framework/components/base.html" %}
+
+{% load static %}
+{% block content %}
+
+
+<h1>Dashboard</h1>
+{{ login_message }}
+
+{% for switch in switches %}
+<li>Switch :{{ switch.timeframe }}</li>
+{% endfor %}
+
+<h2>Create new Switch</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Swtich</button>
+  </form>
+    
+  
+{% endblock content %}

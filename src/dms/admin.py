@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Switch, Controller
 
-# Register your models here.
+
+@admin.register(Switch, Controller)
+class AuthorAdmin(admin.ModelAdmin):
+    pass

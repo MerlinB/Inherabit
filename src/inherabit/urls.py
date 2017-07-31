@@ -18,6 +18,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('landingpage.urls')),
-    url(r'dms/', include('dms.urls')),
+    url(r'', include('landingpage.urls')),
+    url(r'fw/', include('framework.urls')),
+    url(r'dashboard/', include('dms.urls')),
 ]

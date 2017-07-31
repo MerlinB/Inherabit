@@ -1,24 +1,22 @@
-# from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
+from .forms import DMSForm
+from django.urls import reverse_lazy
+from django.contrib.auth.models import User
+from .models import Switch
 
-def signup_view(request):
+
+@login_required(login_url = reverse_lazy('framework:login'))
+def dashboard_view(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('landingpage:home')
-    else:
-        form = SignUpForm()
-    return render(request, 'dms/signup-view.html', {'form': form})
+        newswitch = Switch(controller=request.user.controller, timeframe=request.POST['timeframe'])
+        newswitch.save()
+    login_message = "You are logged in as %s!" % request.user.username
+    form = DMSForm(user = request.user)
     
-    
-# @login_required(login_url = '/admin/login')
-# def signup_view(request):
-#     return render(request, 'dms/signup-view.html', {})
+    context = {
+        'form': form,
+        'switches': list(Switch.objects.filter(controller__user=request.user)),
+        'login_message': login_message
+    }
+    return render(request, 'dms/dashboard-view.html', context)
