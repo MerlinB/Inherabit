@@ -4,6 +4,7 @@ from .forms import DMSForm
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
 from .models import Switch
+#import os
 
 
 @login_required(login_url = reverse_lazy('framework:login'))
@@ -11,9 +12,10 @@ def dashboard_view(request):
     if request.method == 'POST':
         newswitch = Switch(controller=request.user.controller, timeframe=request.POST['timeframe'])
         newswitch.save()
+        #os.system('(crontab -l ; echo "0 4 * * * myscript")| crontab')
     login_message = "You are logged in as %s!" % request.user.username
     form = DMSForm(user = request.user)
-    
+
     context = {
         'form': form,
         'switches': list(Switch.objects.filter(controller__user=request.user)),

@@ -127,3 +127,19 @@ STATIC_ROOT = '/var/www/static-root'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = '/var/www/media-root'
+
+# Email settings
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'merlin.buczek@gmail.com'
+# EMAIL_HOST_PASSWORD = 'pvhdqovhomekupxy'
+# EMAIL_PORT = 587
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'Bitbart'
+EMAIL_HOST_PASSWORD = 'einswdd159SG'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# EMAIL_BACKEND = "sgbackend.SendGridBackend"
+# SENDGRID_API_KEY = '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'
