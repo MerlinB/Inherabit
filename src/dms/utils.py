@@ -18,4 +18,4 @@ def sendNotification(switch):
         [switch.controller.user.email],
         fail_silently=False,
     )
-    send_mail('Subject here', 'Here is the message.', 'from@example.com', ['to@example.com'], fail_silently=False)
+    # send_mail('Subject here', 'Here is the message.', 'from@example.com', ['to@example.com'], fail_silently=False)

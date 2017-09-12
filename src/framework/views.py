@@ -1,9 +1,11 @@
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from .forms import SignUpForm, LoginForm
 from django.http import HttpResponse
 from django.urls import reverse
+
 
 def login_view(request):
     if request.method == 'POST':
@@ -15,21 +17,27 @@ def login_view(request):
             print("Logged in")
             return redirect(reverse('dms:dashboard'))
         else:
-            return HttpResponse("the hell u doin?")
-    else:
-        if request.user.is_authenticated():
-            return redirect(reverse('dms:dashboard'))
-        form = LoginForm
+            # return HttpResponse("Wrong User/PW.")
+            messages.info(request, 'Wrong User/Password.')
+
+    if request.user.is_authenticated():
+        return redirect(reverse('dms:dashboard'))
+    form = LoginForm
+    
+    context = {
+        'form': form, 
+        'header': 'Log In', 
+        'button': ['Sign Up',reverse('framework:signup')]
+    }
+    
+    return render(request, 'framework/signup-view.html', context)
+    
         
-        context = {
-            'form': form, 
-            'header': 'Log In', 
-            'button': ['Sign Up',reverse('framework:signup')]
-        }
-        
-        return render(request, 'framework/signup-view.html', context)
-        
-            
+def logout_view(request):
+    logout(request)
+    messages.info(request, 'Logged out.')
+    return redirect(reverse('framework:login'))
+    
 
 def signup_view(request):
     if request.method == 'POST':
