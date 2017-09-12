@@ -1,0 +1,5 @@
+Django==1.11.3
+python-http-client==2.4.0
+pytz==2017.2
+sendgrid==3.6.5
+sendgrid-django==4.0.4
