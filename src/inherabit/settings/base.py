@@ -19,9 +19,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'atye7q@0#6u^-ucq_tz_rlwjs&+*51)@#11lhn7kk2y1p_5((f'
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -127,19 +124,3 @@ STATIC_ROOT = '/var/www/static-root'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = '/var/www/media-root'
-
-# Email settings
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_HOST_USER = 'merlin.buczek@gmail.com'
-# EMAIL_HOST_PASSWORD = 'pvhdqovhomekupxy'
-# EMAIL_PORT = 587
-
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'Bitbart'
-EMAIL_HOST_PASSWORD = 'einswdd159SG'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
-# EMAIL_BACKEND = "sgbackend.SendGridBackend"
-# SENDGRID_API_KEY = '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'
