@@ -1,21 +1,33 @@
 from django.core.mail import EmailMessage, send_mail
+from .models import Switch
+from datetime import date #, timedelta
+
+
+def checkDays():
+    now = date.today()
+    for s in Switch:
+        dayspassed = (now - s.controller.last_seen).days
+        if dayspassed >= s.timeframe:
+            activateDMS(s)
+        elif dayspassed + s.notification is s.timeframe:
+            sendNotification(s)
+
 
 def activateDMS(switch):
-    pass
+    print("Activating DMS for ", s.controller.user.name)
+
+
+def resetTimer(user):
+    user.controller.last_seen = date.today()
+
 
 def sendNotification(switch):
-    # email = EmailMessage(
-    #     'Alert: Your Dead Mans Switch activates in %d days!' % switch.notification,
-    #     'Click on this link, if you dont want it to activate.',
-    #     to=[merlin.buczek@gmail.com]
-    # )
-    # email.send()
-    print('Alert send to ', switch.controller.user.email)#.controller.user.email)
     send_mail(
         'Alert: Your Dead Mans Switch activates in %d days!' % switch.notification,
-        'Click on this link, if you dont want it to activate.',
+        'Log in at Inherabit.com to reset it.',
         'info@inherabit.com',
         [switch.controller.user.email],
         fail_silently=False,
     )
-    # send_mail('Subject here', 'Here is the message.', 'from@example.com', ['to@example.com'], fail_silently=False)
+    # TODO: Check for failure, handle it.
+    print('Alert send to ', switch.controller.user.email)
