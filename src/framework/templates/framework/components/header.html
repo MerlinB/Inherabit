@@ -5,12 +5,12 @@
     <ul>
       <li class="nav-brand"><a href="#"><img src="{% static '/framework/style/logo-big.png' %}">Inherabit</a></li>
       {% if request.user.is_authenticated %}
-        <li class="nav-category"><a href="#" class="nav-element">Profile</a></li>
         <li class="nav-category"><a href="#" class="nav-element">Contact</a></li>
+        <li class="nav-category"><a href="#" class="nav-element">{{ request.user.username }}</a></li>
       {% else %}
-        <li class="nav-category"><a href="#" class="nav-element">FAQ</a></li>
-        <li class="nav-category"><a href="#" class="nav-element">About Us</a></li>
         <li class="nav-category"><a href="#" class="nav-element">Contact</a></li>
+        <li class="nav-category"><a href="#" class="nav-element">About Us</a></li>
+        <li class="nav-category"><a href="#" class="nav-element">FAQ</a></li>
       {% endif %}
       <!--<li class="nav-brand"><a href="#"><img src="{% static '/framework/style/logo-big.png' %}"></a></li>-->
     </ul>
