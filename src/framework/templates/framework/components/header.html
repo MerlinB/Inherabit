@@ -1,43 +1,18 @@
 {% load static %}
 
-
-
-<!-- Begin Header-->
-<!--
-<div class="container">
-
-  <nav class="navbar navbar-toggleable-md navbar-light navbar-inverse">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand text-white" href="#">Inherabit</a>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">FAQ</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
-</nav>
-</div>
--->
 <div class="header">
   <nav>
     <ul>
-      <!--<li class="nav-brand"><a href="#"><img src="{% static '/framework/style/logo-big.png' %}"></a></li>-->
       <li class="nav-brand"><a href="#"><img src="{% static '/framework/style/logo-big.png' %}">Inherabit</a></li>
-      <li class="nav-category"><a href="#" class="nav-element">FAQ</a></li>
-      <li class="nav-category"><a href="#" class="nav-element">About Us</a></li>
-      <li class="nav-category"><a href="#" class="nav-element">Contact</a></li>
+      {% if request.user.is_authenticated %}
+        <li class="nav-category"><a href="#" class="nav-element">Profile</a></li>
+        <li class="nav-category"><a href="#" class="nav-element">Contact</a></li>
+      {% else %}
+        <li class="nav-category"><a href="#" class="nav-element">FAQ</a></li>
+        <li class="nav-category"><a href="#" class="nav-element">About Us</a></li>
+        <li class="nav-category"><a href="#" class="nav-element">Contact</a></li>
+      {% endif %}
+      <!--<li class="nav-brand"><a href="#"><img src="{% static '/framework/style/logo-big.png' %}"></a></li>-->
     </ul>
   </nav>
 </div>
-
-<!-- End Header -->
