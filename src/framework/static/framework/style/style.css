@@ -60,6 +60,21 @@ nav .nav-element {
   margin-bottom: 10px;
 }
 
+/* Dashboard */
+.flex-container {
+  display: flex;
+  width: 80%;
+  background-color: green;
+}
+
+.card {
+  background-color: grey;
+  width: 20%;
+  margin: 1em;
+  padding: 0.5em;
+  min-width: 15em;
+}
+
 /* MDOAL */
 .modal {
     display: none;

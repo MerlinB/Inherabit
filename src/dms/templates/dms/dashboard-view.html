@@ -6,19 +6,19 @@
 <h1>Dashboard</h1>
 {{ login_message }}
 
-<ul>
+<div class="flex-container">
 {% for switch in switches %}
-  <li>
-    Switch {{ switch.name }}
+  <div class="card">
+    <h3>Switch {{ switch.name }}</h3>
     <ul>
       <li>Timeframe: {{ switch.timeframe }} days to activation.</li>
       <li>Notification: {{ switch.notification }} days before activation.</li>
       <li>Beneficiary: {{ switch.beneficiary }}</li>
       <li>Secret: {{ switch.secret }}</li>
     </ul>
-  </li>
+  </div>
 {% endfor %}
-</ul>
+</div>
 
 <!-- Trigger/Open The Modal -->
 <button id="myBtn">New Switch</button>
