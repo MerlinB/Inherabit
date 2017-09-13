@@ -29,14 +29,26 @@
     <span class="close">&times;</span>
     <h2>Create new Switch</h2>
     <form method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
+      <table>
+        {% csrf_token %}
+        {% for field in form %}
+          <tr>
+              {{ field.errors }}
+              <th>{{ field.label_tag }}</th> 
+              <th>{{ field }}</th>
+              {% if field.help_text %}
+                <p class="help">{{ field.help_text|safe }}</p>
+              {% endif %}
+          </tr>
+        {% endfor %}
+        <!-- {{ form.as_p }} -->
+      </table>
       <button type="submit">Create Swtich</button>
     </form>
   </div>
 </div>
 
-<button onclick="window.location.href='{% url 'framework:logout' %}'">Logout</button>
+<!-- <button onclick="window.location.href='{% url 'framework:logout' %}'">Logout</button> -->
   
 <script src="{% static 'framework/js/modals.js' %}"></script>
 {% endblock content %}

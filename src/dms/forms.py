@@ -1,12 +1,12 @@
 from django import forms
-from .models import Switch
+from .models import Switch,  Controller
 
         
 class DMSForm(forms.ModelForm):
-    timeframe = forms.IntegerField(help_text='Days without contact until activation.')
-    secret = forms.CharField(help_text='Your Secret.', widget=forms.Textarea)
-    beneficiary = forms.EmailField(help_text='Who gets the secret?')
-    notification = forms.IntegerField(help_text='Days before activation when notification is send.')
+    timeframe = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'Days without contact until activation.','min':1})) #help_text='Days without contact until activation.')
+    secret = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Your Secret.'})) #help_text='Your Secret.', widget=forms.Textarea)
+    beneficiary = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Who gets the secret?'})) #help_text='Who gets the secret?')
+    notification = forms.IntegerField(widget=forms.NumberInput(attrs={'placeholder': 'Days before activation when notification is send.','min':1})) #help_text='Days before activation when notification is send.')
     
     # Old solution:
     # def __init__(self, user, *args, **kwargs):
@@ -16,4 +16,3 @@ class DMSForm(forms.ModelForm):
     class Meta:
         model = Switch
         fields = ['name', 'timeframe', 'notification', 'beneficiary', 'secret']
-    

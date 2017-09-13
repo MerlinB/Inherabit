@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class Controller(models.Model):
@@ -23,8 +24,8 @@ def save_user_controller(sender, instance, **kwargs):
 
 class Switch(models.Model):
     name = models.CharField(default="New Switch", max_length=50)
-    timeframe = models.IntegerField()
-    notification = models.IntegerField()
+    timeframe = models.PositiveIntegerField(validators=[MinValueValidator(1)])
+    notification = models.PositiveIntegerField(validators=[MinValueValidator(1)])
     beneficiary = models.EmailField()
     secret = models.TextField(blank=True, null=True)
     controller = models.ForeignKey(Controller, on_delete=models.CASCADE)

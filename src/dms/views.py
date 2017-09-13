@@ -13,7 +13,9 @@ from .utils import resetTimer
 def dashboard_view(request):
     if request.method == 'POST':
         form = DMSForm(request.POST)
-        if form.is_valid():
+        if request.POST['notification'] > request.POST['timeframe']:
+            messages.error(request, "Notification can't be bigger than the timeframe.")
+        elif form.is_valid():
             newswitch = form.save(commit=False)
             newswitch.controller = request.user.controller
             newswitch.save()

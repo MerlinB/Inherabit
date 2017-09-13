@@ -3,14 +3,17 @@
 <div class="header">
   <nav>
     <ul>
-      <li class="nav-brand"><a href="#"><img src="{% static '/framework/style/logo-big.png' %}">Inherabit</a></li>
       {% if request.user.is_authenticated %}
-        <li class="nav-category"><a href="#" class="nav-element">Contact</a></li>
+        <li class="nav-brand"><a href="{% url 'dms:dashboard' %}"><img src="{% static '/framework/style/logo-big.png' %}">Inherabit</a></li>
+        <li class="nav-category"><a href="{% url 'framework:logout' %}" class="nav-element">Logout</a></li>
         <li class="nav-category"><a href="#" class="nav-element">{{ request.user.username }}</a></li>
+        <!-- <li class="nav-category"><a href="#" class="nav-element">Contact</a></li> -->
       {% else %}
-        <li class="nav-category"><a href="#" class="nav-element">Contact</a></li>
-        <li class="nav-category"><a href="#" class="nav-element">About Us</a></li>
-        <li class="nav-category"><a href="#" class="nav-element">FAQ</a></li>
+        <li class="nav-brand"><a href="{% url 'landingpage:home' %}"><img src="{% static '/framework/style/logo-big.png' %}">Inherabit</a></li>
+        <li class="nav-category"><a href="{% url 'framework:login' %}" class="nav-element">Login</a></li>
+        <!-- <li class="nav-category"><a href="#" class="nav-element">Contact</a></li> -->
+        <li class="nav-category"><a href="{% url 'landingpage:about' %}" class="nav-element">About Us</a></li>
+        <li class="nav-category"><a href="{% url 'landingpage:faq' %}" class="nav-element">FAQ</a></li>
       {% endif %}
       <!--<li class="nav-brand"><a href="#"><img src="{% static '/framework/style/logo-big.png' %}"></a></li>-->
     </ul>

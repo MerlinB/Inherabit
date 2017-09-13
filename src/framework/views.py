@@ -51,16 +51,19 @@ def signup_view(request):
             print("User created")
             return redirect(reverse('dms:dashboard'))
         else:
-            return HttpResponse("Errors:",form.errors)
-    else:
-        if request.user.is_authenticated():
-            return redirect(reverse('dms:dashboard'))
-        form = SignUpForm()
+            for field in form:
+                messages.error(request, "".join(f for f in field.errors), extra_tags='safe')
+            # for error in form.non_field_errors(): #PW falsch erscheint doppelt?
+            #     messages.error(request, error, extra_tags='safe')
+            
+    if request.user.is_authenticated():
+        return redirect(reverse('dms:dashboard'))
+    form = SignUpForm()
 
-        context = {
-            'form': form,
-            'header': 'Sign Up',
-            'button': ['Log In',reverse('framework:login')]
-        }
+    context = {
+        'form': form,
+        'header': 'Sign Up',
+        'button': ['Log In',reverse('framework:login')]
+    }
 
-        return render(request, 'framework/signup-view.html', context)
+    return render(request, 'framework/signup-view.html', context)

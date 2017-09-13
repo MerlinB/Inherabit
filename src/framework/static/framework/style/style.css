@@ -95,3 +95,38 @@ nav .nav-element {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* ALERTS */
+
+.info, .success, .warning, .error {
+  margin: 10px 0px;
+  padding:12px;
+  border-radius:.2em;
+  width: 80%;
+}
+
+.info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+
+.success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+
+.warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+
+.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+
+/*.info i, .success i, .warning i, .error i {
+    margin:10px 22px;
+    font-size:2em;
+    vertical-align:middle;
+}*/
