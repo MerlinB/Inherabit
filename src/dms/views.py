@@ -12,9 +12,15 @@ from .utils import resetTimer
 @login_required(login_url = reverse_lazy('framework:login'))
 def dashboard_view(request):
     if request.method == 'POST':
-        newswitch = Switch(controller=request.user.controller, timeframe=request.POST['timeframe'])
-        newswitch.save()
-        messages.info(request, 'DMS created.')
+        form = DMSForm(request.POST)
+        if form.is_valid():
+            newswitch = form.save(commit=False)
+            newswitch.controller = request.user.controller
+            newswitch.save()
+            # Old solution:
+            # newswitch = Switch(controller=request.user.controller, *args, **kwargs)#, timeframe=request.POST['timeframe'], notification=request.POST['notification'])
+            # newswitch.save()
+            messages.info(request, 'DMS created.')
         # send_mail(
         #     'DMS created',
         #     'Test',
@@ -26,7 +32,7 @@ def dashboard_view(request):
     resetTimer(request.user)
 
     login_message = "You are logged in as %s!" % request.user.username
-    form = DMSForm(user = request.user)
+    form = DMSForm() # Old solution: (user = request.user)
     context = {
         'form': form,
         'switches': list(Switch.objects.filter(controller__user=request.user)),

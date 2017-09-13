@@ -7,9 +7,19 @@
 <h1>Dashboard</h1>
 {{ login_message }}
 
+<ul>
 {% for switch in switches %}
-<li>Switch :{{ switch.timeframe }}</li>
+  <li>
+    Switch {{ switch.name }}
+    <ul>
+      <li>Timeframe: {{ switch.timeframe }} days to activation.</li>
+      <li>Notification: {{ switch.notification }} days before activation.</li>
+      <li>Beneficiary: {{ switch.beneficiary }}</li>
+      <li>Secret: {{ switch.secret }}</li>
+    </ul>
+  </li>
 {% endfor %}
+</ul>
 
 <h2>Create new Switch</h2>
   <form method="post">

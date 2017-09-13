@@ -22,6 +22,14 @@ def save_user_controller(sender, instance, **kwargs):
 
 
 class Switch(models.Model):
+    name = models.CharField(default="New Switch", max_length=50)
     timeframe = models.IntegerField()
-    notification = models.IntegerField(default=20)
+    notification = models.IntegerField()
+    beneficiary = models.EmailField()
+    secret = models.TextField(blank=True, null=True)
     controller = models.ForeignKey(Controller, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return (str(self.id) + " | " + self.controller.user.username + ": TF:" + str(self.timeframe) + " | N:" + str(self.notification))
+    
+    

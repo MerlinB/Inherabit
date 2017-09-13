@@ -14,7 +14,7 @@ def checkDays():
 
 
 def activateDMS(switch):
-    print("Activating DMS for ", s.controller.user.name)
+    print("Activating DMS for ", s.controller.user.username)
 
 
 def resetTimer(user):
