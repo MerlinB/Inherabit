@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="description" content="Anonymous Inheritance for the Blockchain Era">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="{% static '/framework/images/favicon.ico' %}" sizes="32x32">  
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">  
+    <link rel="shortcut icon" type="image/png" href="{% static '/framework/images/favicon.ico' %}" sizes="32x32">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '/framework/style/style.css' %}">
 
     <title>
         {% block title %}Inherabit{% endblock title %}
     </title>
-    
+
   </head>
   <body>
     {% include "framework/components/header.html" %}
-    
+
     {% if messages %}
       <ul class="messages">
         {% for message in messages %}
@@ -25,13 +25,13 @@
         {% endfor %}
       </ul>
     {% endif %}
-    
+
     {% block content %}
     Inherabit Landing Page
     {% endblock content %}
-    
+
     {% include "framework/components/footer.html" %}
-  
+
   </body>
 
 </html>
