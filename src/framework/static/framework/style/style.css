@@ -23,6 +23,10 @@ nav ul {
 nav li {
   float: left;
 }
+nav img {
+  width: 29px;
+  padding-right: 4px;
+}
 nav li a {
   display: block;
   color: white;
@@ -36,10 +40,14 @@ nav li a:hover {
 nav .nav-brand {
   float: left;
   font-weight: bold;
-
+  font-size: 30px;
 }
 nav .nav-category {
   float: right;
+  height: 30px;
+}
+nav .nav-element {
+  padding: 22px 16px;
 }
 
 /* BODY */
