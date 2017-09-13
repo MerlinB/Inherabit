@@ -53,24 +53,37 @@ nav .nav-element {
 /* BODY */
 .body {
   padding-left: 10%;
+  padding-right: 10%;
   margin-left: 16px;
 }
 .body button {
   padding: 4px 8px;
   margin-bottom: 10px;
 }
-
+.body table {
+  border-spacing: 0px;
+}
+.body tr {
+  text-align: left;
+}
+.body th {
+    display: grid;
+}
+.body ul {
+  padding-left: 1em;
+}
 /* Dashboard */
-.flex-container {
+.body .flex-container {
   display: flex;
-  width: 80%;
-  background-color: green;
+  background-color: white;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
-.card {
+.body .card {
   background-color: grey;
   width: 20%;
-  margin: 1em;
+  margin-top: 1em;
   padding: 0.5em;
   min-width: 15em;
 }
