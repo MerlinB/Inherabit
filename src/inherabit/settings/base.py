@@ -119,8 +119,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = '/var/www/static-root'
+STATIC_ROOT = '../static-root'
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = '/var/www/media-root'
+MEDIA_ROOT = '../media-root'

@@ -4,37 +4,50 @@
 {% block content %}
 
 <h1>Dashboard</h1>
-{{ login_message }}
 
 <div class="flex-container">
 {% for switch in switches %}
-  <div class="card">
-    <h3>Switch {{ switch.name }}</h3>
-    <ul>
-      <li>Timeframe: {{ switch.timeframe }} days to activation.</li>
-      <li>Notification: {{ switch.notification }} days before activation.</li>
-      <li>Beneficiary: {{ switch.beneficiary }}</li>
-      <li>Secret: {{ switch.secret }}</li>
-    </ul>
+  <div value="Click" name="edit" class="card" onclick="javascript:document.getElementById('{{ switch.id }}').submit();">
+    <form method="get" action="#" id='{{ switch.id }}'>
+      <input type="hidden" value="{{ switch.id }}" name="switch">
+      <input type="hidden" value="True" name="edit">
+      <!-- <button value="Click" name="edit" class="card" onclick="javascript:this.form.submit();"> -->
+        <h3>Switch {{ switch.name }}</h3>
+        <ul>
+          <li>Timeframe: {{ switch.timeframe }} days to activation.</li>
+          <li>Notification: {{ switch.notification }} days before activation.</li>
+          <li>Beneficiary: {{ switch.beneficiary }}</li>
+          <li>Secret: {{ switch.secret }}</li>
+        </ul>
+      <!-- </button> -->
+    </form>
   </div>
+{% endfor %}
+{% for i in empty_cards %}
+  <div class="card" style="height:0; padding-top:0; padding-bottom:0;"></div>
 {% endfor %}
 </div>
 
 <!-- Trigger/Open The Modal -->
-<button id="myBtn">New Switch</button>
+<!-- <button id="myBtn">New Switch</button> -->
+<form method="get" action="#">
+  <input type="submit" class="btn" value="New Switch" name="new">
+</form>
 
+
+{% if form %}
 <!-- The Modal -->
 <div id="myModal" class="modal">
   <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Create new Switch</h2>
+    <a href="{% url 'dms:dashboard' %}"><span class="close">&times;</span></a>
+    <h2>{{ formtitle }}</h2>
     <form method="post">
       <table>
         {% csrf_token %}
         {% for field in form %}
           <tr>
               {{ field.errors }}
-              <th>{{ field.label_tag }}</th> 
+              <th>{{ field.label_tag }}</th>
               <th>{{ field }}</th>
               {% if field.help_text %}
                 <p class="help">{{ field.help_text|safe }}</p>
@@ -43,12 +56,35 @@
         {% endfor %}
         <!-- {{ form.as_p }} -->
       </table>
-      <button type="submit">Create Swtich</button>
+      {% if switch %}<input type="hidden" value="{{ switch.id }}" name="switch">{% endif %}
+      <button type="submit">{{ submit }}</button>
     </form>
   </div>
 </div>
 
 <!-- <button onclick="window.location.href='{% url 'framework:logout' %}'">Logout</button> -->
-  
-<script src="{% static 'framework/js/modals.js' %}"></script>
+
+<!-- <script src="{% static 'framework/js/modals.js' %}"></script> -->
+<script type="text/javascript">
+  // Get the modal
+  var modal = document.getElementById('myModal');
+
+  // Get the <span> element that closes the modal
+  // var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on <span> (x), close the modal
+  // span.onclick = function() {
+  //     modal.style.display = "none";
+  // }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          // modal.style.display = "none";
+          window.location = {% url 'dms:dashboard' %}
+      }
+  }
+</script>
+{% endif %}
+
 {% endblock content %}

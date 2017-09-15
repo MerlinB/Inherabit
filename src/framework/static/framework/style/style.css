@@ -90,7 +90,7 @@ nav .nav-element {
 
 /* MDOAL */
 .modal {
-    display: none;
+    /*display: none;*/
     position: fixed;
     z-index: 1;
     left: 0;
@@ -131,6 +131,7 @@ nav .nav-element {
   padding:12px;
   border-radius:.2em;
   width: 80%;
+  z-index: 1;
 }
 
 .info {
