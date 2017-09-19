@@ -12,7 +12,7 @@
       <input type="hidden" value="{{ switch.id }}" name="switch">
       <input type="hidden" value="True" name="edit">
       <!-- <button value="Click" name="edit" class="card" onclick="javascript:this.form.submit();"> -->
-        <h3>Switch {{ switch.name }}</h3>
+        <h3>{{ switch.name }}</h3>
         <ul>
           <li>Timeframe: {{ switch.timeframe }} days to activation.</li>
           <li>Notification: {{ switch.notification }} days before activation.</li>
@@ -59,6 +59,13 @@
       {% if switch %}<input type="hidden" value="{{ switch.id }}" name="switch">{% endif %}
       <button type="submit">{{ submit }}</button>
     </form>
+    {% if switch %}
+    <form method="POST">
+      {% csrf_token %}
+      <input type="hidden" value="{{ switch.id }}" name="delete">
+      <button type="submit">Delete Switch</button>
+    </form>
+    {% endif %}
   </div>
 </div>
 

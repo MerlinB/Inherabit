@@ -17,6 +17,10 @@ def dashboard_view(request):
         # if(request.GET.get('mybtn')):
         #     form = DMSForm(request.POST)
         # else:
+        if 'delete' in request.POST:
+            switches.get(id=request.POST['delete']).delete()
+            messages.info(request, 'DMS deleted.')
+            return redirect(reverse_lazy('dms:dashboard'))
         if int(request.POST['notification']) > int(request.POST['timeframe']):
             print(request.POST['notification'],request.POST['timeframe'])
             messages.error(request, "Notification can't be bigger than the timeframe.")
@@ -28,7 +32,7 @@ def dashboard_view(request):
                     form.save()
                     messages.info(request, 'DMS changed.')
                     # request.GET['edit'] = False;
-                    return redirect(reverse_lazy('dms:dashboard'))
+                    # return redirect(reverse_lazy('dms:dashboard'))
             else:
                 form = DMSForm(request.POST)
                 if form.is_valid():
@@ -39,7 +43,7 @@ def dashboard_view(request):
                     # newswitch = Switch(controller=request.user.controller, *args, **kwargs)#, timeframe=request.POST['timeframe'], notification=request.POST['notification'])
                     # newswitch.save()
                     messages.info(request, 'DMS created.')
-
+            return redirect(reverse_lazy('dms:dashboard'))
         # send_mail(
         #     'DMS created',
         #     'Test',
