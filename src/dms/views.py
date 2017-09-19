@@ -27,6 +27,8 @@ def dashboard_view(request):
                 if form.is_valid():
                     form.save()
                     messages.info(request, 'DMS changed.')
+                    # request.GET['edit'] = False;
+                    return redirect(reverse_lazy('dms:dashboard'))
             else:
                 form = DMSForm(request.POST)
                 if form.is_valid():
